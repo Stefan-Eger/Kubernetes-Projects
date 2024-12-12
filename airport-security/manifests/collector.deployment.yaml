@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: collector-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: collector-service
+  template:
+    metadata:
+      labels:
+        app: collector-service
+    spec:
+      containers:
+      - name: collector-service
+        image: st600/collector-service:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 200m
+            memory: 64Mi
+          limits:
+            cpu: 400m
+            memory: 128Mi
+        ports:
+        - containerPort: 80

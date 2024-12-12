@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camera-1-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: camera-1-service
+  template:
+    metadata:
+      labels:
+        app: camera-1-service
+    spec:
+      containers:
+      - name: camera-1-service
+        image: ccuni/camera-service-2024w
+        resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 50m
+              memory: 128Mi
+        ports:
+        - containerPort: 80
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camera-2-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: camera-2-service
+  template:
+    metadata:
+      labels:
+        app: camera-2-service
+    spec:
+      containers:
+      - name: camera-2-service
+        image: ccuni/camera-service-2024w
+        resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 50m
+              memory: 128Mi
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camera-3-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: camera-3-service
+  template:
+    metadata:
+      labels:
+        app: camera-3-service
+    spec:
+      containers:
+      - name: camera-3-service
+        image: ccuni/camera-service-2024w
+        resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 50m
+              memory: 128Mi
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camera-4-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: camera-4-service
+  template:
+    metadata:
+      labels:
+        app: camera-4-service
+    spec:
+      containers:
+      - name: camera-4-service
+        image: ccuni/camera-service-2024w
+        resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 50m
+              memory: 128Mi
+        ports:
+        - containerPort: 80
+

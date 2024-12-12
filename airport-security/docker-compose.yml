@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  collector-service:
+    build: service # remove this if you build the container image separatelly, or replace it with your actual setup
+    networks:
+      - backend-network
+    deploy:
+      resources:      # you can also describe resource usage constraints (optional)
+        limits:
+          cpus: "0.5"
+  camera-service:
+    image: ccuni/camera-service-2024w
+    ports:
+      - "1111:80"
+    networks:
+      - backend-network
+  image-analysis-service:
+    image: ccuni/image-analysis-service-2024w
+    networks:
+      - backend-network
+  face-recognition-service:
+    image: ccuni/face-recognition-service-2024w
+    networks:
+      - backend-network
+  section-service:
+    image: ccuni/section-service-2024w
+    networks:
+      - backend-network
+    ports:
+      - "2222:80"
+  alert-service:
+    image: ccuni/alert-service-2024w
+    networks:
+      - backend-network
+    ports:
+      - "3333:80"
+networks:
+    backend-network:
+      driver: bridge

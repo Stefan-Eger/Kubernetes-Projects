@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-analysis-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-analysis-service
+  template:
+    metadata:
+      labels:
+        app: image-analysis-service
+    spec:
+      containers:
+      - name: image-analysis-service
+        image: ccuni/image-analysis-service-2024w
+        resources:
+            requests:
+              cpu: 600m
+              memory: 512Mi
+            limits:
+              cpu: 2000m
+              memory: 1024Mi
+        ports:
+        - containerPort: 80

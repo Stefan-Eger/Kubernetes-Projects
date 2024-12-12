@@ -1,0 +1,55 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: airport-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx-default
+  rules:
+  - host: 34.30.212.46.nip.io
+    http:
+      paths:
+      - path: /cam1(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: camera-1-service
+            port:
+              number: 8080
+      - path: /cam2(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: camera-2-service
+            port:
+              number: 8080
+      - path: /cam3(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: camera-3-service
+            port:
+              number: 8080
+      - path: /cam4(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: camera-4-service
+            port:
+              number: 8080
+      - path: /alerts-svc(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: alert-service
+            port:
+              number: 80
+      - path: /section-svc(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: section-service
+            port:
+              number: 80
